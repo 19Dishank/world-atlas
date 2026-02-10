@@ -33,7 +33,7 @@ const About = () => {
                                         </div>
                                         <div>
                                             <p className="text-[10px] text-slate-500 uppercase font-bold">Population</p>
-                                            <p className="text-sm text-slate-200 font-medium">{ele.population}</p>
+                                            <p className="text-sm text-slate-200 font-medium">{ele.population.toLocaleString()}</p>
                                         </div>
                                     </div>
                                 </div>
