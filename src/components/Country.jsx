@@ -5,9 +5,11 @@ import { displayCountry } from "../APIs/PostApi";
 const Country = () => {
     const [countries, setCountries] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    // for search
     const [search, setSearch] = useState("");
+    //for sort
     const [sortOrder, setSortOrder] = useState("asc");
+    //for filter
     const [region, setRegion] = useState("all");
 
     const fetchCountries = async () => {
@@ -23,11 +25,16 @@ const Country = () => {
 
     useEffect(() => { fetchCountries(); }, []);
 
-    
+
     const filteredCountries = countries
         .filter((country) => {
             const matchesSearch = country.name.common.toLowerCase().includes(search.toLowerCase());
-            const matchesRegion = region === "all" || country.region === region;
+
+            // if all is seleced it will return all countries else it will return selected region 
+            const matchesRegion = region === "all"
+                ? country
+                : country.region === region;
+
             return matchesSearch && matchesRegion;
         })
         .sort((a, b) => {
@@ -46,10 +53,10 @@ const Country = () => {
         <div className="bg-slate-950 min-h-screen w-full px-6 py-10">
             <div className="max-w-7xl mx-auto">
 
-              
+
                 <div className="flex flex-col lg:flex-row gap-6 mb-12 items-center justify-between">
 
-                   
+
                     <div className="relative w-full lg:max-w-md">
                         <input
                             type="text"
@@ -107,10 +114,7 @@ const Country = () => {
                         ))
                     ) : (
                         <div className="col-span-full py-32 border border-slate-900 bg-slate-900/20 rounded-3xl flex flex-col items-center justify-center gap-4">
-                            <svg className="w-12 h-12 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                            <p className="text-slate-600 font-bold uppercase tracking-[0.2em] text-[10px]">No Countries found</p>
+                            <p className="text-slate-600 font-bold uppercase tracking-[0.2em] text-3xl">No Countries found</p>
                         </div>
                     )}
                 </div>

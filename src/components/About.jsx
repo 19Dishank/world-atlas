@@ -2,12 +2,12 @@ import React from 'react';
 import countryData from '../APIs/CountryData.json'
 const About = () => {
     return (
-        <div>
-            <h1 className='text-slate-50 text-3xl text-center pt-4 capitalize font-sans italic'>here are the interesting facts about some countries</h1>
+        <div className='bg-slate-950'>
+            <h1 className='text-slate-50 text-xl md:text-3xl sm:text-2xl text-center p-5 capitalize font-sans italic'>here are the interesting facts about some countries</h1>
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 px-4 md:px-10 py-10 max-w-7xl mx-auto'>
                 {countryData.map((ele) => {
                     return (
-                        <div key={ele.id} className="group relative flex flex-col w-full h-full bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/50 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)]">
+                        <div key={ele.id} className="group relative flex flex-col w-full h-full bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/50 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)]">
 
                             <div className="grow p-8">
                                 <div className="flex flex-col gap-1 mb-8">

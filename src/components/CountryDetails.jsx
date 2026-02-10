@@ -6,7 +6,7 @@ const CountryDetails = () => {
     const params = useParams();
     const navigate = useNavigate();
 
-    
+
     const [country, setCountry] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -20,7 +20,7 @@ const CountryDetails = () => {
             setLoading(false);
         }
     };
-
+    
     useEffect(() => {
         fetchCountry();
     }, [params.id]);
@@ -49,7 +49,7 @@ const CountryDetails = () => {
 
                 <div className="flex flex-col md:flex-row w-full max-w-2xl bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-slate-800 transition-all duration-300 hover:border-slate-700">
 
-                    
+
                     <div className="relative w-full md:w-80 shrink-0">
                         <img
                             src={country.flags?.svg || country.flags?.png}
@@ -67,20 +67,26 @@ const CountryDetails = () => {
                                     {country.name?.common}
                                 </h3>
                                 <div className="flex items-center gap-4 text-slate-400 text-xs font-bold italic">
-                                    <span>Tld: {country.tld?.[0]}</span>
+                                    <span>Domain:  {country.tld?.[0]}</span>
                                     <span className="text-emerald-400 not-italic">Pop: {country.population?.toLocaleString()}</span>
                                 </div>
                             </div>
 
                             <div className="mt-6 space-y-3 border-l-2 border-indigo-500/30 pl-4">
                                 <p className="text-xs font-bold tracking-wide">
-                                    <span className="text-slate-100 uppercase mr-2 opacity-60">Capital:</span>
+                                    <span className="text-slate-100 capitalize mr-2 opacity-60">Capital:</span>
                                     <span className="text-slate-300">{country.capital?.[0]}</span>
                                 </p>
                                 <p className="text-xs font-bold tracking-wide">
-                                    <span className="text-slate-100 uppercase mr-2 opacity-60">Languages:</span>
+                                    <span className="text-slate-100 capitalize mr-2 opacity-60">Languages:</span>
                                     <span className="text-slate-300">
                                         {country.languages ? Object.values(country.languages).join(", ") : "N/A"}
+                                    </span>
+                                </p>
+                                <p className="text-xs font-bold tracking-wide">
+                                    <span className="text-slate-100 capitalize mr-2 opacity-60">Borders:</span>
+                                    <span className="text-slate-300">
+                                        {country.languages ? Object.values(country.borders).join(", ") : "N/A"}
                                     </span>
                                 </p>
                             </div>
@@ -92,10 +98,19 @@ const CountryDetails = () => {
 
                         <div className="mt-6 pt-6 border-t border-slate-800 ">
                             <p className="text-xs font-bold tracking-wide">
-                                <span className="text-indigo-400 uppercase mr-2">Currencies:</span>
-                                <span className="text-slate-400 font-medium">
-                                    {country.currencies ? Object.values(country.currencies).map(c => c.name).join(", ") : "N/A"}
-                                </span>
+                                <span className="text-indigo-400 capitalize mr-2">Currencies:</span>
+                                <span className="text-slate-100 font-medium">
+                                    {country.currencies ? Object.values(country.currencies).map((c) => {
+                                        return c.name
+                                    }).join(", ") : "N/A"}
+                                </span>&nbsp;
+                                
+                                    <span className="text-slate-100 font-medium">
+                                        ({country.currencies ? Object.values(country.currencies).map((c) => {
+                                            return c.symbol
+                                        }).join(", ") : "N/A"})
+                                    </span>
+                                
                             </p>
                         </div>
                     </div>
