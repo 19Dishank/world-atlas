@@ -5,8 +5,7 @@ import About from '../components/About';
 const Home = () => {
     return (
         <div>
-            <Hero/>
-            <About/>        
+            <Hero />
         </div>
     );
 };
